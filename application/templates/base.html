@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{% endblock %} - Grievance Redressal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
+  </head>
+  <body class="px-5">
+    <div class="container-fluid">
+      <h2 class="text-center pt-2">Grievance of Students of Redressals</h2>
+      <hr />
+    </div>
+    {% for message in get_flashed_messages(category_filter = 'error') %}
+    <div class="alert alert-danger mx-3 my-2" role="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter = 'message') %}
+    <div class="alert alert-success mx-3 my-2" role="alert">{{ message }} </div>
+    {% endfor %}
+
+    {% block content %}{% endblock %}
+    <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
+  </body>
+</html>
