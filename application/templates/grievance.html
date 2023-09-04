@@ -5,7 +5,7 @@ Grievance
 {% endblock %}
 
 {% block content %}
-<form method="post" action="#">
+<form method="post" action="/">
 <div class="mb-3">
   <label for="name" class="form-label">Name:</label>
   <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name here..." required="required"/>
@@ -49,11 +49,11 @@ Grievance
   <input type="text" class="form-control" id="contact" name="contact" placeholder="Enter your contact number here..." required="required" />
 <div class="mb-3">
   <label for="email" class="form-label">Email Address:</label>
-  <input type="email" class="form-control" id="email" placeholder="name@example.com" />
+  <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" />
 </div>
 <div class="mb-3">
   <label for="grievance" class="form-label">Grievance:</label>
-  <textarea class="form-control" id="grievance" rows="7" maxlength="500" placeholder="Enter your text here..."></textarea>
+  <textarea class="form-control" id="grievance" name="grievance" rows="7" maxlength="500" placeholder="Enter your text here..."></textarea>
 </div>
 <div class="mb-3">
   <input type="submit" class="form-control" value="Submit" />

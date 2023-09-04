@@ -11,6 +11,13 @@ def create_app(test_config=None):
         DATABASE=os.path.join(app.instance_path, 'database.sqlite'),
     )
 
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USERNAME'] = os.environ.get('grievance_mail')
+    app.config['MAIL_PASSWORD'] = os.environ.get('grievance_mail_password')
+    app.config['MAIL_USE_TLS'] = False
+    app.config['MAIL_USE_SSL'] = True
+
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)
