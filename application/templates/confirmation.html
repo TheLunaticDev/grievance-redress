@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Confirmation
+{% endblock %}
+
+{% block content %}
+<div class="mb-3">
+  <p><b>You wouldn't be able to change any information after you hit confirm. Please review your given information and state them as correct.</b></p>
+  <ol class="list-group">
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+	<div class="fw-bold">Name</div>
+	{{ data['name'] }}
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+	<div class="fw-bold">Course</div>
+	{{ data['course'] }}
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+	<div class="fw-bold">Department</div>
+	{{ data['department'] }}
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+	<div class="fw-bold">Semester</div>
+	{{ data['sem'] }}
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+	<div class="fw-bold">Registration Number</div>
+	{{ data['reg_no'] }}
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+	<div class="fw-bold">Roll Number</div>
+	{{ data['roll_no'] }}
+      </div>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+	<div class="fw-bold">Contact Number</div>
+	{{ data['contact'] }}
+      </div>
+    </li>
+     <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+	<div class="fw-bold">Email</div>
+	{{ data['email'] }}
+      </div>
+    </li>
+     <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div class="ms-2 me-auto">
+	<div class="fw-bold">Grievance</div>
+	{{ data['grievance'] }}
+      </div>
+    </li>
+  </ol>
+  <br />
+  <form action="{{ url_for('validation') }}">
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" value="" id="agree" name="agree" onclick="isChecked()"/>
+      <label class="form-check-label" for="agree">
+	I acknowledge that information provided by me is correct.
+      </label>
+    </div>
+    <div class="mb-3">
+      <input type="submit" class="form-control" id="confirm" disabled="disabled" value="Confirm" />
+    </div>
+  </form>
+</div>
+<script src="{{ url_for('static', filename='confirmation.js') }}"></script>
+{% endblock %}
