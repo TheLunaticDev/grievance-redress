@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Validation
+{% endblock %}
+
+{% block content %}
+<div class="mb-3 alert alert-primary" role="alert">
+  A 6 digit OTP number has been sent to your email. Please enter that email to continue.
+</div>
+<form method="post" action="{{ url_for('grievance.validation') }}">
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">Enter OTP</span>
+    <input type="text" class="form-control" placeholder="6 digit OTP" aria-label="6 digit OTP" aria-describedby="basic-addon1" id="otp" name="otp" required="required" />
+  </div>
+  <input type="submit" class="form-control" value="Submit" />
+</form>
+{% endblock %}

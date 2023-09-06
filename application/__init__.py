@@ -13,7 +13,7 @@ def create_app(test_config=None):
 
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
-    app.config['MAIL_USERNAME'] = os.environ.get('grievance_mail')
+    app.config['MAIL_USERNAME'] = os.getenv('grievance_mail')
     app.config['MAIL_PASSWORD'] = os.environ.get('grievance_mail_password')
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Final
+{% endblock %}
+
+{% block content %}
+<div class="mb-3">
+  <p>Thank you for using this service.</p>
+  <p>Your complain has been successfully registered in our system with id {{ g_id }}.</p>
+  <p>You may wish to save that id in case you would like to refer back later.</p>
+</div>
+<form action="{{ url_for('index') }}">
+  <div class="mb-3">
+    <input type="submit" class="form-control" id="confirm" value="Confirm" />
+  </div>
+</form>
+{% endblock %}
