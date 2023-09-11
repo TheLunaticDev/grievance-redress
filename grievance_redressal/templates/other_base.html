@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}{% endblock %} - Redressal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}" />
+  </head>
+  <body class="px-5">
+    <nav class="navbar navbar-expand-lg" style="background-color: #e3f2fd;">
+      <div class="container-fluid">
+	<a class="navbar-brand" href="{{ url_for('redressal.manage') }}">Grievance Redressal</a>
+	<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarSupportedContent">
+	  <ul class="navbar-nav">
+	    {% if g.user != None %}
+	    <li class="nav-item dropdown">
+	      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expand="false">
+		Manage
+	      </a>
+	      <ul class="dropdown-menu">
+		<li><a class="dropdown-item" href="{{ url_for('redressal.new') }}">New</a></li>
+		<li><a class="dropdown-item" href="{{ url_for('redressal.ongoing') }}">Ongoing</a></li>
+		<li><a class="dropdown-item" href="{{ url_for('redressal.resolved') }}">Solved</a></li>
+		<li><a class="dropdown-item" href="{{ url_for('redressal.spam') }}">Marked</a></li>
+	      </ul>
+	    </li>
+	    <li class="nav-item">
+	      <a class="nav-link" aria-content="page" href="{{ url_for('redressal.logout') }}">Log Out</a>
+	    </li>
+	    {% endif %}
+	  </ul>
+	</div>
+      </div>
+    </nav>
+    {% for message in get_flashed_messages(category_filter = 'error') %}
+    <div class="alert alert-danger mx-3 my-2" role="alert">{{ message }}</div>
+    {% endfor %}
+    {% for message in get_flashed_messages(category_filter = 'message') %}
+    <div class="alert alert-success mx-3 my-2" role="alert">{{ message }}</div>
+    {% endfor %}
+    <br />
+    {% block content %}{% endblock %}
+    <script src="{{ url_for('static', filename='bootstrap.bundle.min.js') }}"></script>
+  </body>
+</html>

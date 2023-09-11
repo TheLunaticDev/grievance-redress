@@ -1,0 +1,186 @@
+{% extends 'other_base.html' %}
+{% block title %}Manage{% endblock %}
+{% block content %}
+{% if data|length > 0 %}
+{% for d in data %}
+<p class="d-inline-flex gap-1">
+  <div class="d-grid gap-2">
+    {% if d['status'] == 'New' %}
+    <button class="btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#{{ d['g_id'] }}" aria-expanded="false" aria-control="message">
+    {{ d['g_id'] }}
+    </button>
+    {% elif d['status'] == 'Ongoing' %}
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{{ d['g_id'] }}" aria-expanded="false" aria-control="message">
+    {{ d['g_id'] }}
+    </button>
+    {% elif d['status'] == 'Resolved' %}
+     <button class="btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#{{ d['g_id'] }}" aria-expanded="false" aria-control="message">
+    {{ d['g_id'] }}
+    </button>
+     {% elif d['status'] == 'Spam' %}
+     <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#{{ d['g_id'] }}" aria-expanded="false" aria-control="message">
+    {{ d['g_id'] }}
+    </button>
+     {% else %}
+     <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#{{ d['g_id'] }}" aria-expanded="false" aria-control="message">
+    {{ d['g_id'] }}
+     </button>
+     {% endif %}
+  </div>
+</p>
+<div class="collapse pb-3" id="{{ d['g_id'] }}">
+  <div class="card card-body">
+    <ul class="list-group list-group-numbered">
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+	<div class="ms-2 me-auto">
+	  <div class="fw-bold">Grievance Id</div>
+	</div>
+	<span class="badge bg-primary rounded-pill">{{ d['g_id'] }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+	<div class="ms-2 me-auto">
+	  <div class="fw-bold">Name</div>
+	</div>
+	<span class="badge bg-primary rounded-pill">{{ d['name'] }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+	<div class="ms-2 me-auto">
+	  <div class="fw-bold">Course</div>
+	</div>
+	<span class="badge bg-primary rounded-pill">{{ d['course'] }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+	<div class="ms-2 me-auto">
+	  <div class="fw-bold">Department</div>
+	</div>
+	<span class="badge bg-primary rounded-pill">{{ d['dept'] }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+	<div class="ms-2 me-auto">
+	  <div class="fw-bold">Semester</div>
+	</div>
+	<span class="badge bg-primary rounded-pill">{{ d['sem'] }}</span>
+      </li>
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+	<div class="ms-2 me-auto">
+	  <div class="fw-bold">Registration Number</div>
+	</div>
+	<span class="badge bg-primary rounded-pill">{{ d['reg_no'] }}</span>
+      </li>
+
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+	<div class="ms-2 me-auto">
+	  <div class="fw-bold">Roll Number</div>
+	</div>
+	<span class="badge bg-primary rounded-pill">{{ d['roll_no'] }}</span>
+      </li>
+
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+	<div class="ms-2 me-auto">
+	  <div class="fw-bold">Contact Number</div>
+	</div>
+	<span class="badge bg-primary rounded-pill">{{ d['contact'] }}</span>
+      </li>
+
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+	<div class="ms-2 me-auto">
+	  <div class="fw-bold">Email Id</div>
+	</div>
+	<span class="badge bg-primary rounded-pill">{{ d['email_id'] }}</span>
+      </li>
+
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+	<div class="ms-2 me-auto">
+	  <div class="fw-bold">Time</div>
+	</div>
+	<span class="badge bg-primary rounded-pill">{{ d['datetime'] }}</span>
+      </li>
+
+      <li class="list-group-item d-flex justify-content-between align-items-start">
+	<div class="ms-2 me-auto">
+	  <div class="fw-bold">Grievance</div>
+	  {{ d['grievance'] }}
+	</div>
+      </li>
+    </ul>
+
+    {% if redressal[d['g_id']]|length < 1 %}
+				  <div class="alert alert-danger my-2" role="alert">
+				    No redressals have been made for this alert yet! Press 'Add Redressal' to add new redressals.
+				  </div>
+				  {% else %}
+				  <ul class="list-group list-group">
+				  {% for r in redressal[d['g_id']] %}
+				  <hr />
+				  <ul class="list-group list-group">
+				    <li class="list-group-item d-flex justify-content-between align-items-start">
+				      <div class="ms-2 me-auto">
+					<div class="fw-bold">Redressal Id</div>
+				      </div>
+				      <span class="badge bg-primary rounded-pill">{{ r['r_id'] }}</span>
+				    </li>
+				  {% if r['schedule'] != '' %}
+				    <li class="list-group-item d-flex justify-content-between align-items-start">
+				      <div class="ms-2 me-auto">
+					<div class="fw-bold">Schedule Date</div>
+				      </div>
+				      <span class="badge bg-primary rounded-pill">{{ r['schedule'] }}</span>
+				    </li>
+				  {% endif %}
+				    <li class="list-group-item d-flex justify-content-between align-items-start">
+				      <div class="ms-2 me-auto">
+					<div class="fw-bold">Time</div>
+				      </div>
+				      <span class="badge bg-primary rounded-pill">{{ r['datetime'] }}</span>
+				    </li>
+
+				    <li class="list-group-item d-flex justify-content-between align-items-start">
+				      <div class="ms-2 me-auto">
+					<div class="fw-bold">Redressal Text</div>
+					{{ r['redressal'] }}
+				      </div>
+				    </li>
+
+				  </ul>
+				  {% endfor %}
+				  </ul>
+				  {% endif %}
+    
+  </div>
+  <p class="d-inline-flex gap-1 pt-3">
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#redressal-{{ d['g_id'] }}" aria-expanded="false" aria-controls="redressal-{{ d['id'] }}">
+      Add Redressal
+    </button>
+  </p>
+  <div class="collapse" id="redressal-{{ d['g_id'] }}">
+    <div class="card card-body">
+      <form method="post" action="{{ url_for('redressal.manage') }}">
+	<div class="mb-3">
+	  <label for="redressal_text-{{ d['g_id'] }}" class="form-label">Redressal</label>
+	  <textarea class="form-control" id="redressal_text-{{ d['g_id'] }}" name="redressal_text" rows="3" required="required"></textarea>
+	</div>
+	<div class="mb-3">
+	  <label for="redressal_date-{{ d['g_id'] }}" class="form-label">Date (optional)</label>
+	  <input type="date" class="form-control" id="redressal_date-{{ d['g_id'] }}" name="redressal_date" />
+	</div>
+	<div class="mb-3">
+	  <select class="form-select" aria-label="Mark as" name="redressal_state" required="required">
+	    <option value="Ongoing">Mark as Ongoing</option>
+	    <option value="Resolved">Mark as Resolved</option>
+	    <option value="Spam">Mark as spam</option>
+	  </select>
+	</div>
+	<div class="mb-3">
+	  <input type="hidden" name="g_id" value="{{ d['g_id'] }}" />
+	  <input type="submit" class="form-control" value="Submit" />
+	</div>
+      </form>
+    </div>
+  </div>
+</div>
+<br />
+{% endfor %}
+{% else %}
+<h5 class="text-center">No grievance has been found for this view. Switch to a different view to see if there are any grievances there.</h5>
+{% endif %}
+{% endblock %}

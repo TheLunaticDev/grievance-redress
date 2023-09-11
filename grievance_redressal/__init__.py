@@ -43,4 +43,8 @@ def create_app(test_config=None):
     app.register_blueprint(grievance.bp)
     app.add_url_rule('/', endpoint='index')
 
+    from . import redressal
+    app.register_blueprint(redressal.bp)
+    redressal.init_app(app)
+
     return app

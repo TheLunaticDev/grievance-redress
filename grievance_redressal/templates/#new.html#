@@ -1,0 +1,4 @@
+{% extends 'manage.html' %}
+{% block title %}Manage - New{% endblock %}
+{% block content %}
+% endblock %}
