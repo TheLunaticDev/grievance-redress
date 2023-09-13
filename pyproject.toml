@@ -1,6 +1,6 @@
 [project]
 name = "grievance-redressal"
-version = "0.0.2"
+version = "1.0.0"
 description = "A basic grievance-redressal management system."
 dependencies = [
     "Flask", "Flask-Mail", "pyotp", "python-dotenv",
