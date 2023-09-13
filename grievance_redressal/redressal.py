@@ -140,7 +140,7 @@ def manage():
         mail.send(msg)
         del mail
 
-        return render_template('manage.html', data=data, redressal=redressal)
+        return redirect(url_for('redressal.manage'))
 
     flash(error, 'error')
 

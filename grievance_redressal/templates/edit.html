@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit
+{% endblock %}
+
+{% block content %}
+<form method="post" action="{{ url_for('grievance.confirmation') }}">
+<div class="mb-3">
+  <p><b>Only enter value in a section if you wish to change it. Otherwise leave it empty.</b></p>
+  <label for="name" class="form-label">Name (<b>{{ data['name'] }}</b>):</label>
+  <input type="text" class="form-control" id="name" name="name" placeholder="Enter name here."/>
+</div>
+<div class="mb-3">
+  <label for="course" class="form-label">Course (<b>{{ data['course'] }}</b>):</label>
+  <select class="form-select" id="course" name="course" onchange="update_department()">
+    <option hidden="hidden" selected="selected" value=""> -- select your course type -- </option>
+    <option value="UG">UG</option>
+    <option value="PG">PG</option>
+    <option value="General">General</option>
+  </select>
+</div>
+<div class="mb-3">
+  <label for="department" class="form-label">Department (<b>{{ data['department'] }}</b>):</label>
+  <select class="form-select" id="department" name="department">
+    <option hidden="hidden" selected="selected" value=""> -- select your course type first -- </option>
+  </select>
+</div>
+<div class="mb-3">
+  <label for="sem" class="form-label">Semester (<b>{{ data['sem'] }}</b>):</label>
+  <select class="form-select" id="sem" name="sem">
+    <option hidden="hidden" selected="selected" value=""> -- select your semester -- </option>
+    <option value="1">I</option>
+    <option value="2">II</option>
+    <option value="3">III</option>
+    <option value="4">IV</option>
+    <option value="5">V</option>
+    <option value="6">VI</option>
+    <option value="7">VII</option>
+    <option value="8">VIII</option>
+  </select>
+</div> 
+<div class="mb-3">
+  <label for="reg_no" class="form-label">Registration Number (<b>{{ data['reg_no'] }}</b>):</label>
+  <input type="text" class="form-control" id="reg_no" name="reg_no" placeholder="Enter your registration number here."/>
+</div>
+<div class="mb-3">
+  <label for="roll_no" class="form-label">Roll Number (<b>{{ data['roll_no'] }}</b>):</label>
+  <input type="text" class="form-control" id="roll_no" name="roll_no" placeholder="Enter your roll number here."/>
+</div>
+<div class="mb-3">
+  <label for="contact" class="form-label">Contact Number (<b>{{ data['contact'] }}</b>):</label>
+  <input type="text" class="form-control" id="contact" name="contact" placeholder="We will contact you through this number if required."/>
+<div class="mb-3">
+  <label for="email" class="form-label">Email Address (<b>{{ data['email'] }}</b>):</label>
+  <input type="email" class="form-control" id="email" name="email" placeholder="An OTP will be sent to this email for verification."/>
+</div>
+<div class="mb-3">
+  <label for="grievance" class="form-label">Grievance: </label>
+  <label for="grievance" class="form-label">[ <b>{{ data['grievance'] }}</b> ]</label>
+  <textarea class="form-control" id="grievance" name="grievance" rows="7" maxlength="500" placeholder="Your grievance message should be within 500 characters (100 words)."></textarea>
+</div>
+<div class="mb-3">
+  <input type="hidden" name="base_name" value="{{ data['name'] }}" />
+  <input type="hidden" name="base_course" value="{{ data['course'] }}" />
+  <input type="hidden" name="base_department" value="{{ data['department'] }}" />
+  <input type="hidden" name="base_sem" value="{{ data['sem'] }}" />
+  <input type="hidden" name="base_reg_no" value="{{ data['reg_no'] }}" />
+  <input type="hidden" name="base_roll_no" value="{{ data['roll_no'] }}" />
+  <input type="hidden" name="base_contact" value="{{ data['contact'] }}" />
+  <input type="hidden" name="base_email" value="{{ data['email'] }}" />
+  <input type="hidden" name="base_grievance" value="{{ data['grievance'] }}" />
+  <input type="submit" class="form-control" value="Submit" />
+</div>
+</form>
+<script src="{{ url_for('static', filename='grievance.js') }}"></script>
+{% endblock %}

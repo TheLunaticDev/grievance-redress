@@ -1,44 +1,44 @@
 'use strict';
 
 const departments = {
-    "general": {
-	"science": "Science",
-	"arts": "Arts",
-	"commerce": "Commerce"
+    "General": {
+	"Science": "Science",
+	"Arts": "Arts",
+	"Commerce": "Commerce"
     },
-    "ug": {
-	"asp": "ASP",
-	"bengali": "Bengali",
-	"botany": "Botany",
-	"chemistry": "Chemistry",
-	"commerce": "Commerce",
-	"computer science": "Computer Science",
-	"economics": "Economics",
-	"education": "Education",
-	"electronics": "Electronic Science",
-	"english": "English",
-	"nutrition": "Food & Nutrition",
-	"envs": "Environmental Science",
-	"geography": "Geography",
-	"hindi": "Hindi",
-	"history": "History",
-	"journalism": "Journalism & Mass Com.",
-	"maths": "Mathematics",
-	"philosophy": "Philosophy",
-	"physical_education": "Physical Education",
-	"physics": "Physics",
-	"physiology": "Physiology",
-	"pol_science": "Political Science",
-	"sanskrit": "Sanskrit",
-	"sociology": "Sociology",
-	"urdu": "Urdu",
-	"zoology": "Zoology",
+    "UG": {
+	"ASP": "ASP",
+	"Bengali": "Bengali",
+	"Botany": "Botany",
+	"Chemistry": "Chemistry",
+	"Commerce": "Commerce",
+	"Computer Science": "Computer Science",
+	"Economics": "Economics",
+	"Education": "Education",
+	"Electronic Science": "Electronic Science",
+	"English": "English",
+	"Food & Nutrition": "Food & Nutrition",
+	"Environmental Science": "Environmental Science",
+	"Geography": "Geography",
+	"Hindi": "Hindi",
+	"History": "History",
+	"Journalism & Mass Com.": "Journalism & Mass Com.",
+	"Mathematics": "Mathematics",
+	"Philosophy": "Philosophy",
+	"Physical Education": "Physical Education",
+	"Physics": "Physics",
+	"Physiology": "Physiology",
+	"Political Science": "Political Science",
+	"Sanskrit": "Sanskrit",
+	"Sociology": "Sociology",
+	"Urdu": "Urdu",
+	"Zoology": "Zoology",
     },
-    "pg": {
-	"commerce": "Commerce",
-	"english": "English",
-	"geography": "Geography",
-	"urdu": "Urdu"
+    "PG": {
+	"Commerce": "Commerce",
+	"English": "English",
+	"Geography": "Geography",
+	"Urdu": "Urdu"
     }
 };
 

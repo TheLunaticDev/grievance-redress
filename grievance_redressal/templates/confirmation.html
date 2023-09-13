@@ -6,7 +6,9 @@ Confirmation
 
 {% block content %}
 <div class="mb-3">
-  <p><b>You wouldn't be able to change any information after you hit confirm. Please review your given information and state them as correct.</b></p>
+  <p><b>You wouldn't be able to change any information after you hit confirm.</b></p>
+  <p><b>Press Edit if you want to change any information.</b></p>
+  <p><b>Please review your given information and state them as correct.</b></p>
   <ol class="list-group">
     <li class="list-group-item d-flex justify-content-between align-items-start">
       <div class="ms-2 me-auto">
@@ -72,7 +74,8 @@ Confirmation
       </label>
     </div>
     <div class="mb-3">
-      <input type="submit" class="form-control" id="confirm" disabled="disabled" value="Confirm" />
+      <input type="submit" class="form-control" id="edit" name="action" value="Edit" />
+      <input type="submit" class="form-control" id="confirm" name="action" hidden disabled value="Confirm" />
     </div>
   </form>
 </div>

@@ -34,66 +34,66 @@
       <li class="list-group-item d-flex justify-content-between align-items-start">
 	<div class="ms-2 me-auto">
 	  <div class="fw-bold">Grievance Id</div>
+	  {{ d['g_id'] }}
 	</div>
-	<span class="badge bg-primary rounded-pill">{{ d['g_id'] }}</span>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
 	<div class="ms-2 me-auto">
 	  <div class="fw-bold">Name</div>
+	  {{ d['name'] }}
 	</div>
-	<span class="badge bg-primary rounded-pill">{{ d['name'] }}</span>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
 	<div class="ms-2 me-auto">
 	  <div class="fw-bold">Course</div>
+	  {{ d['course'] }}
 	</div>
-	<span class="badge bg-primary rounded-pill">{{ d['course'] }}</span>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
 	<div class="ms-2 me-auto">
 	  <div class="fw-bold">Department</div>
+	  {{ d['dept'] }}
 	</div>
-	<span class="badge bg-primary rounded-pill">{{ d['dept'] }}</span>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
 	<div class="ms-2 me-auto">
 	  <div class="fw-bold">Semester</div>
+	  {{ d['sem'] }}
 	</div>
-	<span class="badge bg-primary rounded-pill">{{ d['sem'] }}</span>
       </li>
       <li class="list-group-item d-flex justify-content-between align-items-start">
 	<div class="ms-2 me-auto">
 	  <div class="fw-bold">Registration Number</div>
+	  {{ d['reg_no'] }}
 	</div>
-	<span class="badge bg-primary rounded-pill">{{ d['reg_no'] }}</span>
       </li>
 
       <li class="list-group-item d-flex justify-content-between align-items-start">
 	<div class="ms-2 me-auto">
 	  <div class="fw-bold">Roll Number</div>
+	  {{ d['roll_no'] }}
 	</div>
-	<span class="badge bg-primary rounded-pill">{{ d['roll_no'] }}</span>
       </li>
 
       <li class="list-group-item d-flex justify-content-between align-items-start">
 	<div class="ms-2 me-auto">
 	  <div class="fw-bold">Contact Number</div>
+	  {{ d['contact'] }}
 	</div>
-	<span class="badge bg-primary rounded-pill">{{ d['contact'] }}</span>
       </li>
 
       <li class="list-group-item d-flex justify-content-between align-items-start">
 	<div class="ms-2 me-auto">
 	  <div class="fw-bold">Email Id</div>
+	  {{ d['email_id'] }}
 	</div>
-	<span class="badge bg-primary rounded-pill">{{ d['email_id'] }}</span>
       </li>
 
       <li class="list-group-item d-flex justify-content-between align-items-start">
 	<div class="ms-2 me-auto">
-	  <div class="fw-bold">Time</div>
+	  <div class="fw-bold">Grievance Time</div>
+	  {{ d['datetime'] }}
 	</div>
-	<span class="badge bg-primary rounded-pill">{{ d['datetime'] }}</span>
       </li>
 
       <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -116,22 +116,22 @@
 				    <li class="list-group-item d-flex justify-content-between align-items-start">
 				      <div class="ms-2 me-auto">
 					<div class="fw-bold">Redressal Id</div>
+					{{ r['r_id'] }}
 				      </div>
-				      <span class="badge bg-primary rounded-pill">{{ r['r_id'] }}</span>
 				    </li>
 				  {% if r['schedule'] != '' %}
 				    <li class="list-group-item d-flex justify-content-between align-items-start">
 				      <div class="ms-2 me-auto">
 					<div class="fw-bold">Schedule Date</div>
+					{{ r['schedule'] }}
 				      </div>
-				      <span class="badge bg-primary rounded-pill">{{ r['schedule'] }}</span>
 				    </li>
 				  {% endif %}
 				    <li class="list-group-item d-flex justify-content-between align-items-start">
 				      <div class="ms-2 me-auto">
-					<div class="fw-bold">Time</div>
+					<div class="fw-bold"> Redressal Time</div>
+					{{ r['datetime'] }}
 				      </div>
-				      <span class="badge bg-primary rounded-pill">{{ r['datetime'] }}</span>
 				    </li>
 
 				    <li class="list-group-item d-flex justify-content-between align-items-start">
@@ -161,7 +161,7 @@
 	</div>
 	<div class="mb-3">
 	  <label for="redressal_date-{{ d['g_id'] }}" class="form-label">Date (optional)</label>
-	  <input type="date" class="form-control" id="redressal_date-{{ d['g_id'] }}" name="redressal_date" />
+	  <input type="date" class="" id="redressal_date-{{ d['g_id'] }}" name="redressal_date" />
 	</div>
 	<div class="mb-3">
 	  <select class="form-select" aria-label="Mark as" name="redressal_state" required="required">

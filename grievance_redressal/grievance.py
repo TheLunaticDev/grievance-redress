@@ -1,5 +1,6 @@
 from flask import (
-    Blueprint, render_template, request, current_app, session, flash
+    Blueprint, render_template, request, current_app, session, flash,
+    url_for, redirect
 )
 from datetime import date, datetime
 from flask_mail import Mail, Message
@@ -13,20 +14,21 @@ from grievance_redressal.db import get_db
 bp = Blueprint('grievance', __name__)
 
 course = {
-    'ug': [
-        'asp', 'bengali', 'botany', 'chemistry',
-        'commerce', 'computer science', 'economics',
-        'education', 'electronics', 'english', 'nutrition',
-        'envs', 'geography', 'hindi', 'history', 'journalism',
-        'maths', 'philosophy', 'physical_education', 'physics',
-        'physiology', 'pol_science', 'sanskrit', 'sociology',
-        'urdu', 'zoology',
+    'UG': [
+        'ASP', 'Bengali', 'Botany', 'Chemistry',
+        'Commerce', 'Computer Science', 'Economics',
+        'Education', 'Electronic Science', 'English', 'Food & Nutrition',
+        'Environmental Science', 'Geography', 'Hindi', 'History',
+        'Journalism & Mass Com.',
+        'Mathematics', 'Philosophy', 'Physical Education', 'Physics',
+        'Physiology', 'Political Science', 'Sanskrit', 'Sociology',
+        'Urdu', 'Zoology',
     ],
-    'pg': [
-        'commerce', 'english', 'geography', 'urdu',
+    'PG': [
+        'Commerce', 'English', 'Geography', 'Urdu',
     ],
-    'general': [
-        'science', 'arts', 'commerce',
+    'General': [
+        'Science', 'Arts', 'Commerce',
     ],
 }
 
@@ -60,15 +62,67 @@ def index():
     return render_template('grievance.html')
 
 
+@bp.route('/confirmation', methods=['GET', 'POST'])
+def confirmation():
+    if request.method == 'POST':
+        data = {
+            'name': request.form['name'],
+            'course': request.form['course'],
+            'department': request.form['department'],
+            'sem': request.form['sem'],
+            'reg_no': request.form['reg_no'],
+            'roll_no': request.form['roll_no'],
+            'contact': request.form['contact'],
+            'email': request.form['email'],
+            'grievance': request.form['grievance'],
+        }
+
+        if data['name'] == '':
+            data['name'] = request.form['base_name']
+        if data['course'] == '':
+            data['course'] = request.form['base_course']
+        if data['department'] == '':
+            data['department'] = request.form['base_department']
+        if data['sem'] == '':
+            data['sem'] = request.form['base_sem']
+        if data['reg_no'] == '':
+            data['reg_no'] = request.form['base_reg_no']
+        if data['roll_no'] == '':
+            data['roll_no'] = request.form['base_roll_no']
+        if data['contact'] == '':
+            data['contact'] = request.form['base_contact']
+        if data['email'] == '':
+            data['email'] = request.form['base_email']
+        if data['grievance'] == '':
+            data['grievance'] = request.form['base_grievance']
+
+        error = check_input(data)
+
+        if error is None:
+            session.clear()
+            session['data'] = data
+            return render_template('confirmation.html', data=session['data'])
+        else:
+            flash(error, 'error')
+
+    return redirect(url_for('grievance.edit'))
+
+
+@bp.route('/edit', methods=['GET', 'POST'])
+def edit():
+    return render_template('edit.html', data=session['data'])
+
+
 @bp.route('/validation', methods=['GET', 'POST'])
 def validation():
     hotp = pyotp.HOTP('base32secret3232')
     if request.method == 'GET':
+        choice = request.args.get('action')
+        if choice == 'Edit':
+            return redirect(url_for('grievance.edit'))
         if session.get('otp_pos', -1) == -1:
             session['otp_pos'] = secrets.randbelow(sys.maxsize)
-            print("pos: " + str(session['otp_pos']))
             otp = hotp.at(session['otp_pos'])
-            print("Current otp: " + str(otp))
             msg = Message(
                 'OTP for your grievance redressal',
                 sender='donotreply',
@@ -89,10 +143,6 @@ def validation():
 
     if request.method == 'POST':
         user_otp = request.form['otp']
-        print('After otp: ' + user_otp)
-        print("pos: " + str(session['otp_pos']))
-        print(type(user_otp))
-        print(type(session['otp_pos']))
         if hotp.verify(user_otp, session['otp_pos']):
             db = get_db()
             data = session['data']
@@ -118,8 +168,9 @@ def validation():
                 sender='donotreply',
                 recipients=[current_app.config['MAIL_USERNAME']]
             )
-            msg.html = '''
+            msg.html = f'''
             <p>A new grievance has been registered in the system.</p>
+            <p>Grievance Id: { g_id }</p>
             '''
             mail = Mail()
             app = current_app
